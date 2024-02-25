@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+{% block main %}
+    <body>
+
+
+    <main id="main" data-aos="fade-in">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+                <h2>Courses</h2>
+                <p>Explore our diverse range of courses designed to empower your learning journey. From General English
+                    to SAT Prep, and General Math, our expertly crafted programs cater to learners of all levels. Dive
+                    into dynamic lessons, personalized instruction, and practical exercises, tailored to help you
+                    achieve your goals. Whether you're seeking language fluency, exam success, or mathematical mastery,
+                    unlock your potential with our transformative courses. Enroll today and embark on your path to
+                    success!</p>
+            </div>
+        </div><!-- End Breadcrumbs -->
+
+        <!-- ======= Courses Section ======= -->
+        <section id="courses" class="courses">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        <div class="course-item">
+                            <img src="/static/assets/img/english_course_logo.jpeg" class="img-fluid" alt="...">
+                            <div class="course-content">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4>English</h4>
+                                    <p class="price">$60</p>
+                                </div>
+
+                                <h3><a href="/course-details">General English</a></h3>
+                                <p>Unlock your potential and enhance your English proficiency with our General English
+                                    Course!</p>
+                                <div class="trainer d-flex justify-content-between align-items-center">
+                                    <div class="trainer-profile d-flex align-items-center">
+                                        <img src="/static/assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+                                        <span>Antonio</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End Course Item-->
+
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+                        <div class="course-item">
+                            <img src="/static/assets/img/SAT_course_logo.jpeg" class="img-fluid" alt="...">
+                            <div class="course-content">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4>SAT</h4>
+                                    <p class="price">$100</p>
+                                </div>
+
+                                <h3><a href="course-details/sat-details.html">SAT course</a></h3>
+                                <p>Elevate your SAT scores with our comprehensive SAT Course!</p>
+                                <div class="trainer d-flex justify-content-between align-items-center">
+                                    <div class="trainer-profile d-flex align-items-center">
+                                        <img src="/static/assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+                                        <span>Lana</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End Course Item-->
+
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                        <div class="course-item">
+                            <img src="/static/assets/img/general_math_logo.jpeg" class="img-fluid" alt="...">
+                            <div class="course-content">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4>Math</h4>
+                                    <p class="price">$60</p>
+                                </div>
+
+                                <h3><a href="course-details/math-details.html">General math</a></h3>
+                                <p>Discover the power of numbers with our General Math Course!</p>
+                                <div class="trainer d-flex justify-content-between align-items-center">
+                                    <div class="trainer-profile d-flex align-items-center">
+                                        <img src="/static/assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
+                                        <span>Brandon</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End Course Item-->
+
+                    <div class="container">
+                        {% for element in course %}
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                                <div class="course-item">
+                                    <img src="/static/assets/img/general_math_logo.jpeg" class="img-fluid" alt="...">
+                                    <div class="course-content">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h4>{{ element.class_name }}</h4>
+                                            <p class="price">${{ element.price }}</p>
+                                        </div>
+
+                                        <h3><a href="course-details/math-details.html">{{ element.course_name }}</a></h3>
+                                        <p>{{ element.short_description }}</p>
+                                        <div class="trainer d-flex justify-content-between align-items-center">
+                                            <div class="trainer-profile d-flex align-items-center">
+                                                <img src="/static/assets/img/trainers/trainer-3.jpg" class="img-fluid"
+                                                     alt="">
+                                                <span>{{ element.teacher_name }}</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Courses Section -->
+
+    </main><!-- End #main -->
+
+    </body>
+
+{% endblock %}
