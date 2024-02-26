@@ -9,16 +9,23 @@
     <title>Create course</title>
     <div>
         <h1>Add course</h1>
-        <form method="post">
-            <input type="text" class="form-control" name="class_name" id="class_name" placeholder="Class name">
-            <input type="text" class="form-control" name="course_name" id="course_name" placeholder="Course name">
+        <form enctype="multipart/form-data" method="post">
+            <input type="text" class="form-control" name="class_name" id="class_name" placeholder="Class name"/>
+
+            <input type="text" class="form-control" name="course_name" id="course_name" placeholder="Course name"/>
+
             <input type="text" class="form-control" name="short_description" id="short_description"
-                   placeholder="Short description">
-            <input type="number" class="form-control" name="price" id="price" placeholder="Price">
+                   placeholder="Short description"/>
+
+            <input type="number" class="form-control" name="price" id="price" placeholder="Price"/>
+
             <input type="text" class="form-control" name="teacher_name" id="teacher_name"
-                   placeholder="Teacher's name">
-            <input type="file" class="form-control" name="teacher_img" id="teacher_img" placeholder="Teacher's image">
-            <input type="file" class="form-control" name="course_img" id="course_img" placeholder="Course Image">
+                   placeholder="Teacher's name"/>
+
+            <input type=file class="form-control" name="teacher_img" id="teacher_img" placeholder="Teacher's image" accept="image/png, image/jpeg" />
+
+            <input type=file class="form-control" name="course_img" id="course_img" placeholder="Course Image" accept="image/png, image/jpeg" />>
+
             <button class="btn btn-success" type="submit">Add course</button>
         </form>
     </div>
