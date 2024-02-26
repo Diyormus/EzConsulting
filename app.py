@@ -42,7 +42,6 @@ def create_course():
         short_description = request.form['short_description']
         price = request.form['price']
         teacher_name = request.form['teacher_name']
-        print(request.files)
         teacher_img = request.files['teacher_img']
         course_img = request.files['course_img']
         # filename_teacher = secure_filename(teacher_img.filename)
