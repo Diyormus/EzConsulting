@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <h2>Create teacher</h2>
+            <p>Only for admins to create teachers,
+                important you need to fill the whole form in other case you will not add new teacher</p>
+        </div>
+    </div><!-- End Breadcrumbs -->
+    <div>
+        <h1>Add teacher</h1>
+
+        <form enctype="multipart/form-data" method="post">
+            <label>
+            <input type="text" class="form-control" name="teacher_name" id="teacher_name" placeholder="Teacher name"/>
+
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"/>
+
+            <input type="text" class="form-control" name="short_description" id="short_description"
+                   placeholder="Short description">
+
+            <input type=file class="form-control" name="teacher_img" id="teacher_img" placeholder="Teacher's image"
+                   accept="image/png, image/jpeg"/>
+
+            <button class="btn btn-success" type="submit">Add teacher</button>
+            </label>
+        </form>
+
+    </div>
+{% endblock %}

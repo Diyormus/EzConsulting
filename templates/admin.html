@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+</head>
+<body>
+<!-- Header content -->
+
+<!-- Main content -->
+<main id="main">
+    <section id="admin">
+        <div class="container">
+            <h2>Admin Panel</h2>
+            <div class="phone-numbers">
+                <h3>Phone Numbers</h3>
+                <ul>
+                    {% for phone_number in phone_numbers %}
+                        <li>{{ phone_number.number }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer content -->
+</body>
+</html>

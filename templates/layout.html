@@ -32,23 +32,35 @@
 </head>
 
 <body>
-
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-
-        <h1 class="logo me-auto"><a href="/" methods="get">EzConsulting</a></h1>
+        {% if session.logged_in %}
+            <h1 class="logo me-auto"><a href="/admin" methods="get">EzConsulting</a></h1>
+        {% else %}
+            <h1 class="logo me-auto"><a href="/" methods="get">EzConsulting</a></h1>
+        {% endif %}
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a class="active" href="/" methods="get">Home</a></li>
+                {% if session.logged_in %}
+                    <li><a class="active" href="/admin" methods="get">Home</a></li>
+                {% else %}
+                    <li><a class="active" href="/" methods="get">Home</a></li>
+                {% endif %}
                 <li><a href="/about">About</a></li>
                 <li><a href="/courses">Courses</a></li>
                 <li><a href="/trainers">Teachers</a></li>
-                <li><a href="/events">Events</a></li>
                 <li><a href="/pricing">Pricing</a></li>
+                {% if session.logged_in %}
+                    <li><a href="/create_course">Create Course</a></li>
+                    <li><a href="/create_teacher">Create Teacher</a></li>
+                    <li><a href="/logout">Log Out</a></li> <!-- Changed here -->
+                {% else %}
+                    <li><a href="/login">Log In</a></li>
+                {% endif %}
 
                 <li class="dropdown"><a href="#"><span>Study Abroad</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -64,6 +76,7 @@
                                 <li><a href="/czech">Czech Republic</a></li>
                             </ul>
                         </li>
+                        <!-- Removed login link from here -->
                     </ul>
                 </li>
                 <li><a href="/contact">Contact</a></li>
@@ -118,13 +131,20 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-6 footer-newsletter">
-                    <h4>Join Our Newsletter</h4>
-                    <p>Enter your email to get the latest news from our team</p>
-                    <form action="" method="post">
-                        <input type="email" name="email"><input type="submit" value="Subscribe">
-                    </form>
-                </div>
+                <!-- ======= Footer ======= -->
+                <footer id="footer">
+                    <!-- Existing footer content -->
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Join Our Newsletter</h4>
+                        <p>Enter your phone number to get more info from our team</p>
+                        <form action="/" method="post">
+                            <label>
+                                <input type="text" name="number" id="number">
+                            </label>
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </footer><!-- End Footer -->
 
             </div>
         </div>
@@ -135,13 +155,6 @@
         <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
                 &copy; Copyright <strong><span>EzConsulting</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
         <div class="social-links text-center text-md-right pt-3 pt-md-0">
