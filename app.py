@@ -43,21 +43,25 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        admin = Admin.query.filter_by(username=username, password=password).first()
-        if admin:
+
+        is_admin = Admin.query.filter_by(username=username, password=password).first()
+
+        if is_admin:
             session['logged_in'] = True
             return redirect('/admin')
-        else:
-            return render_template('login.html', error='Invalid credentials')
+
+        return render_template('login.html', error='Invalid credentials')
+
     return render_template('login.html')
 
 
 @app.route('/admin', methods=['GET'])
 def admin():
-    if 'logged_in' not in session or not session['logged_in']:
+    if ('logged_in' not in session) or (not session['logged_in']):
         return redirect('/login')
 
     phone_numbers = PhoneNumber.query.all()
+
     return render_template('admin.html', phone_numbers=phone_numbers)
 
 
@@ -77,6 +81,7 @@ def create_course():
         teacher_name = request.form['teacher_name']
         teacher_img = request.files['teacher_img']
         course_img = request.files['course_img']
+
         course = Course(class_name=class_name,
                         course_name=course_name,
                         img_course_data=b64encode(course_img.stream.read()).decode('utf-8'),
@@ -118,13 +123,17 @@ def create_teacher():
 def index():
     course = Course.query.order_by(Course.price).all()
     teacher = Teacher.query.order_by(Teacher.teacher_name).all()
+
+    # Create a separate router for adding a phone, check the validity of the number, limit the maximum number to 1 ip
     if request.method == 'POST':
         number = request.form['number']
         existing_number = PhoneNumber.query.filter_by(number=number).first()
+
         if not existing_number:
             new_number = PhoneNumber(number=number)
             db.session.add(new_number)
             db.session.commit()
+
     return render_template('index.html', course=course, teacher=teacher)
 
 
