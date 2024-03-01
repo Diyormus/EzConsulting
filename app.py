@@ -56,12 +56,9 @@ def login():
 def admin():
     if 'logged_in' not in session or not session['logged_in']:
         return redirect('/login')
-    if request.method == 'POST':
-        # Handle POST request if needed
-        pass
-    else:
-        phone_numbers = PhoneNumber.query.all()
-        return render_template('admin.html', phone_numbers=phone_numbers)
+
+    phone_numbers = PhoneNumber.query.all()
+    return render_template('admin.html', phone_numbers=phone_numbers)
 
 
 @app.route('/logout')
