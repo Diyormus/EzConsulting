@@ -36,14 +36,25 @@
                                     <div class="trainer d-flex justify-content-between align-items-center">
                                         <div class="trainer-profile d-flex align-items-center">
                                             <img src="data:image/png;base64, {{ element.img_teacher_data }}"
-                                                 class="img-fluid"
-                                                 alt="">
+                                                 class="img-fluid" alt="">
                                             <span>{{ element.img_teacher_name }}</span>
                                         </div>
+                                        {% if session.logged_in %}
+
+                                                <div>
+                                                    <button class="btn btn-danger"
+                                                            onclick="confirmDelete({{ element.id }})">Delete
+                                                    </button>
+                                                    <a class="btn btn-light"
+                                                       href="/edit_course/{{ element.id }}">Edit</a>
+                                                </div>
+
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     {% endfor %}
                 </div>
             </div>
