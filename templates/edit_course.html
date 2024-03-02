@@ -13,7 +13,7 @@
 
         <div>
             <h1>Edit Course</h1>
-            <form method="post">
+            <form enctype="multipart/form-data" method="post">
                 <input type="text" class="form-control" name="class_name" id="class_name" placeholder="Class name"
                        value="{{ course.class_name }}">
                 <input type="text" class="form-control" name="course_name" id="course_name" placeholder="Course name"
@@ -26,9 +26,10 @@
                        placeholder="Teacher's name"
                        value="{{ course.teacher_name }}">
                 <input type="file" class="form-control" name="teacher_img" id="teacher_img"
-                       placeholder="Teacher's image"
+                       placeholder="Teacher's image" accept="image/png, image/jpeg"
                 >
-                <input type="file" class="form-control" name="course_img" id="course_img" placeholder="Course Image"
+                <input type="file" class="form-control" name="course_img" id="course_img"
+                       placeholder="Course Image" accept="image/png, image/jpeg"
                 >
                 <button class="btn btn-primary" type="submit">Save Changes</button>
             </form>

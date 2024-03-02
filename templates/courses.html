@@ -43,7 +43,7 @@
 
                                                 <div>
                                                     <button class="btn btn-danger"
-                                                            onclick="confirmDelete({{ element.id }})">Delete
+                                                            onclick="deleteCourse({{ element.id }})">Delete
                                                     </button>
                                                     <a class="btn btn-light"
                                                        href="/edit_course/{{ element.id }}">Edit</a>
@@ -61,6 +61,8 @@
         </section><!-- End Courses Section -->
 
     </main><!-- End #main -->
+
+    <script src="/static/assets/js/delete_course.js"></script>
 
     </body>
 

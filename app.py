@@ -78,8 +78,8 @@ def edit_course(id):
             short_description = request.form['short_description']
             price = request.form['price']
             teacher_name = request.form['teacher_name']
-            teacher_img = request.files['teacher_img']
-            course_img = request.files['course_img']
+            teacher_img = request.files.get('teacher_img', None)
+            course_img = request.files.get('course_img', None)
 
             course.class_name = class_name
             course.course_name = course_name
