@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from base64 import b64encode
 
@@ -50,6 +50,55 @@ def login():
         else:
             return render_template('login.html', error='Invalid credentials')
     return render_template('login.html')
+
+
+@app.route('/courses', methods=['POST'])
+def delete_course(course_id):
+    if 'logged_in' not in session or not session['logged_in']:
+        return redirect('/login')
+
+    course = Course.query.get(course_id)
+    if not course:
+        return 'Course not found'
+
+    db.session.delete(course)
+    db.session.commit()
+    return redirect('/')
+
+
+@app.route('/edit_course/<int:id>', methods=['GET', 'POST'])
+def edit_course(id):
+    course = Course.query.get(id)
+    if course:
+        if request.method == 'POST':
+            class_name = request.form['class_name']
+            course_name = request.form['course_name']
+            short_description = request.form['short_description']
+            price = request.form['price']
+            teacher_name = request.form['teacher_name']
+            teacher_img = request.files['teacher_img']
+            course_img = request.files['course_img']
+
+            course.class_name = class_name
+            course.course_name = course_name
+            course.short_description = short_description
+            course.price = price
+            course.img_teacher_name = teacher_name
+
+            if teacher_img:
+                course.img_teacher_data = b64encode(teacher_img.stream.read()).decode('utf-8')
+            if course_img:
+                course.img_course_data = b64encode(course_img.stream.read()).decode('utf-8')
+
+            db.session.commit()
+
+            return jsonify({'message': 'Course edited successfully'}), 200
+        else:
+
+            return render_template('edit_course.html', course=course)
+    else:
+
+        return jsonify({'error': 'Course not found'}), 404
 
 
 @app.route('/admin', methods=['GET'])

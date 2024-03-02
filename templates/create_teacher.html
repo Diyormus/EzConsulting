@@ -13,15 +13,15 @@
 
         <form enctype="multipart/form-data" method="post">
             <label>
-            <input type="text" class="form-control" name="teacher_name" id="teacher_name" placeholder="Teacher name"/>
+            <input type="text" class="form-control" name="teacher_name" id="teacher_name" placeholder="Teacher name" required/>
 
-            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"/>
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required/>
 
             <input type="text" class="form-control" name="short_description" id="short_description"
-                   placeholder="Short description">
+                   placeholder="Short description" required>
 
             <input type=file class="form-control" name="teacher_img" id="teacher_img" placeholder="Teacher's image"
-                   accept="image/png, image/jpeg"/>
+                   accept="image/png, image/jpeg" required/>
 
             <button class="btn btn-success" type="submit">Add teacher</button>
             </label>

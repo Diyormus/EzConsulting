@@ -9,12 +9,8 @@
         <div class="breadcrumbs">
             <div class="container">
                 <h2>Courses</h2>
-                <p>Explore our diverse range of courses designed to empower your learning journey. From General English
-                    to SAT Prep, and General Math, our expertly crafted programs cater to learners of all levels. Dive
-                    into dynamic lessons, personalized instruction, and practical exercises, tailored to help you
-                    achieve your goals. Whether you're seeking language fluency, exam success, or mathematical mastery,
-                    unlock your potential with our transformative courses. Enroll today and embark on your path to
-                    success!</p>
+                <p>Explore our courses preparing you for SAT, IELTS, and other international tests, enhancing your
+                    readiness for study abroad admission.</p>
             </div>
         </div><!-- End Breadcrumbs -->
 
@@ -42,6 +38,13 @@
                                             <img src="/static/assets/img/trainers/trainer-3.jpg" class="img-fluid"
                                                  alt="">
                                             <span>{{ element.teacher_name }}</span>
+                                            {% if session.logged_in %}
+                                                <button class="btn btn-danger"
+                                                        onclick="confirmDelete({{ element.id }})">Delete
+                                                </button>
+                                                <a class="btn btn-light" href="/edit_course/{{ element.id }}">Edit</a>
+
+                                            {% endif %}
                                         </div>
 
                                     </div>

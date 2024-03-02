@@ -1,28 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Head content -->
-</head>
-<body>
-<!-- Header content -->
+{% extends "layout.html" %}
 
-<!-- Main content -->
-<main id="main">
-    <section id="admin">
-        <div class="container">
-            <h2>Admin Panel</h2>
-            <div class="phone-numbers">
-                <h3>Phone Numbers</h3>
-                <ul>
-                    {% for phone_number in phone_numbers %}
-                        <li>{{ phone_number.number }}</li>
-                    {% endfor %}
-                </ul>
+{% block main %}
+
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs" data-aos="fade-in">
+            <div class="container">
+                <h2>Admin</h2>
+                <p> This account gives access
+                    for creating, deleting, addiding and showing the number of visitors who
+                    are interested in our services </p>
             </div>
-        </div>
-    </section>
-</main>
+        </div><!-- End Breadcrumbs -->
 
-<!-- Footer content -->
-</body>
-</html>
+
+        <!-- Header content -->
+
+        <!-- Main content -->
+        <main id="main">
+            <section id="admin">
+                <div class="container">
+                    <h2>Admin Panel</h2>
+                    <div class="phone-numbers">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer content -->
+
+
+    </main>
+
+{% endblock %}
