@@ -106,7 +106,7 @@ def create_course():
         course_name = request.form['course_name']
         short_description = request.form['short_description']
         price = request.form['price']
-        teacher_name = request.form['teacher_name']
+        img_teacher_name = request.form['teacher_name']
 
         teacher_img = request.files['teacher_img']
         course_img = request.files['course_img']
@@ -116,7 +116,7 @@ def create_course():
                         img_course_data=b64encode(course_img.stream.read()).decode('utf-8'),
                         short_description=short_description,
                         price=price,
-                        img_teacher_name=teacher_name,
+                        img_teacher_name=img_teacher_name,
                         img_teacher_data=b64encode(teacher_img.stream.read()).decode('utf-8'))
 
         db.session.add(course)
@@ -191,7 +191,7 @@ def edit_course(course_id):
             course_name = request.form['course_name']
             short_description = request.form['short_description']
             price = request.form['price']
-            teacher_name = request.form['teacher_name']
+            img_teacher_name = request.form['teacher_name']
 
             teacher_img = request.files.get('teacher_img', None)
             course_img = request.files.get('course_img', None)
@@ -200,7 +200,7 @@ def edit_course(course_id):
             course.course_name = course_name
             course.short_description = short_description
             course.price = price
-            course.img_teacher_name = teacher_name
+            course.img_teacher_name = img_teacher_name
 
             if teacher_img:
                 course.img_teacher_data = b64encode(teacher_img.stream.read()).decode('utf-8')
