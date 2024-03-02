@@ -1,8 +1,7 @@
 {% extends "layout.html" %}
 
 {% block main %}
-
-
+        <!-- Form fields -->
 
         <div class="breadcrumbs">
             <div class="container">
@@ -22,7 +21,7 @@
                        placeholder="Short description" value="{{ course.short_description }}">
                 <input type="number" class="form-control" name="price" id="price" placeholder="Price"
                        value="{{ course.price }}">
-                <input type="text" class="form-control" name="img_teacher_name" id="img_teacher_name"
+                <input type="text" class="form-control" name="teacher_name" id="teacher_name"
                        placeholder="Teacher's name"
                        value="{{ course.teacher_name }}">
                 <input type="file" class="form-control" name="teacher_img" id="teacher_img"
@@ -34,6 +33,6 @@
                 <button class="btn btn-primary" type="submit">Save Changes</button>
             </form>
         </div>
-
+    </form>
 
 {% endblock %}
