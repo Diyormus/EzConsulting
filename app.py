@@ -54,18 +54,18 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/courses', methods=['POST'])
+@app.route('/delete_course/<int:course_id>', methods=['DELETE'])
 def delete_course(course_id):
     if 'logged_in' not in session or not session['logged_in']:
-        return redirect('/login')
+        return jsonify({'error': 'Unauthorized access'}), 401
 
     course = Course.query.get(course_id)
     if not course:
-        return 'Course not found'
+        return jsonify({'error': 'Course not found'}), 404
 
     db.session.delete(course)
     db.session.commit()
-    return redirect('/')
+    return jsonify({'message': 'Course deleted successfully'}), 200
 
 
 @app.route('/edit_course/<int:id>', methods=['GET', 'POST'])
