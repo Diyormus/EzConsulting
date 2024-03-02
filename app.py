@@ -210,9 +210,38 @@ def edit_course(course_id):
 
             db.session.commit()
 
-            return jsonify({'message': 'Course edited successfully'}), 200
+            return redirect("/courses"), 200
 
         return render_template('edit_course.html', course=course)
+
+    return jsonify({'error': 'Course not found'}), 404
+
+
+@app.route('/edit_teacher/<int:teacher_id>', methods=['GET', 'POST'])
+def edit_teacher(teacher_id):
+    teacher = Teacher.query.get(teacher_id)
+
+    if teacher:
+        if request.method == 'POST':
+            teacher_name = request.form['teacher_name']
+            subject = request.form['subject']
+            short_description = request.form['short_description']
+
+            teacher_img = request.files.get('teacher_img', None)
+
+            teacher.teacher_name = teacher_name
+            teacher.subject = subject
+            teacher.short_description = short_description
+            teacher.teacher_img = teacher_img
+
+            if teacher_img:
+                teacher.teacher_img = b64encode(teacher_img.stream.read()).decode('utf-8')
+
+            db.session.commit()
+
+            return redirect("/trainers"), 200
+
+        return render_template('edit_teachers.html', teacher=teacher)
 
     return jsonify({'error': 'Course not found'}), 404
 
@@ -228,6 +257,22 @@ def delete_course(course_id):
         return jsonify({'error': 'Course not found'}), 404
 
     db.session.delete(course)
+    db.session.commit()
+
+    return jsonify({'message': 'Course deleted successfully'}), 200
+
+
+@app.route('/delete_teacher/<int:teacher_id>', methods=['DELETE'])
+def delete_teacher(teacher_id):
+    if ('logged_in' not in session) or (not session['logged_in']):
+        return jsonify({'error': 'Unauthorized access'}), 401
+
+    teacher = Teacher.query.get(teacher_id)
+
+    if not teacher:
+        return jsonify({'error': 'Course not found'}), 404
+
+    db.session.delete(teacher)
     db.session.commit()
 
     return jsonify({'message': 'Course deleted successfully'}), 200
