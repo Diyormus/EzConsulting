@@ -19,43 +19,33 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
-
                     {% for element in course %}
+
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                             <div class="course-item">
-                                <img src="/static/assets/img/general_math_logo.jpeg" class="img-fluid" alt="...">
+                                <img src="data:image/png;base64, {{ element.img_course_data }}" class="img-fluid"
+                                     alt="...">
                                 <div class="course-content">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h4>{{ element.class_name }}</h4>
                                         <p class="price">${{ element.price }}</p>
                                     </div>
 
-                                    <h3><a href="/">{{ element.course_name }}</a></h3>
+                                    <h3><a href="test1234">{{ element.course_name }}</a></h3>
                                     <p>{{ element.short_description }}</p>
                                     <div class="trainer d-flex justify-content-between align-items-center">
                                         <div class="trainer-profile d-flex align-items-center">
-                                            <img src="/static/assets/img/trainers/trainer-3.jpg" class="img-fluid"
+                                            <img src="data:image/png;base64, {{ element.img_teacher_data }}"
+                                                 class="img-fluid"
                                                  alt="">
-                                            <span>{{ element.teacher_name }}</span>
-                                            {% if session.logged_in %}
-                                                <button class="btn btn-danger"
-                                                        onclick="confirmDelete({{ element.id }})">Delete
-                                                </button>
-                                                <a class="btn btn-light" href="/edit_course/{{ element.id }}">Edit</a>
-
-                                            {% endif %}
+                                            <span>{{ element.img_teacher_name }}</span>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-
-            </div>
-
             </div>
         </section><!-- End Courses Section -->
 

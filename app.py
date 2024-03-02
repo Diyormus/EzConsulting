@@ -8,17 +8,6 @@ db = SQLAlchemy(app)
 app.secret_key = 'super_secret_key'
 
 
-class Course(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    class_name = db.Column(db.String(80), nullable=False)
-    course_name = db.Column(db.String(100), nullable=False)
-    short_description = db.Column(db.String(200), nullable=False)
-    price = db.Column(db.Integer, nullable=False)
-    img_teacher_name = db.Column(db.String(100), nullable=False)
-    img_teacher_data = db.Column(db.Text, nullable=False)
-    img_course_data = db.Column(db.Text, nullable=False)
-
-
 class Teacher(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     teacher_name = db.Column(db.String(100), nullable=False)
@@ -36,6 +25,19 @@ class Admin(db.Model):
 class PhoneNumber(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.String(20), unique=True, nullable=False)
+
+
+class Course(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    class_name = db.Column(db.String(80), nullable=False)
+    course_name = db.Column(db.String(100), nullable=False)
+    short_description = db.Column(db.String(200), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    img_teacher_name = db.Column(db.String(100), nullable=False)
+
+    img_teacher_data = db.Column(db.Text, nullable=False)
+    img_course_data = db.Column(db.Text, nullable=False)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -121,6 +123,7 @@ def logout():
 
 @app.route('/create_course', methods=['POST', 'GET'])
 def create_course():
+    print(request.form)
     if request.method == 'POST':
         class_name = request.form['class_name']
         course_name = request.form['course_name']
@@ -141,6 +144,7 @@ def create_course():
         db.session.commit()
 
         return redirect('/')
+    print(request.form)
 
     return render_template('create_course.html')
 
@@ -209,7 +213,6 @@ def trainers():
 
 with app.app_context():
     db.create_all()
-    # Add admin user if not exists
     if not Admin.query.filter_by(username='admin').first():
         admin = Admin(username='admin', password='admin')
         db.session.add(admin)
